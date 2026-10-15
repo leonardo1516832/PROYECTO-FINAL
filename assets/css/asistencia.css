@@ -1,0 +1,180 @@
+/* ===== DASHBOARD - Mobile first ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #1fa55c;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 28rem;
+  margin: 0 auto;
+  background: #1fa55c;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #000;
+}
+
+/* Fondo verde oscuro: colina de arriba y colina de abajo */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 14rem;
+  background: #2a5e35;
+}
+
+body::before {
+  top: 0;
+  border-radius: 0 0 50% 50% / 0 0 4rem 4rem;
+}
+
+body::after {
+  bottom: 0;
+  border-radius: 50% 50% 0 0 / 4rem 4rem 0 0;
+}
+
+/* ----- Cabecera ----- */
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #d9d9d9;
+  font-size: 1.6rem; /* tamaño de los iconos */
+}
+
+header a {
+  color: #000;
+  text-decoration: none;
+}
+
+header span {
+  margin-right: auto;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.75rem;
+}
+
+/* ----- Panel gris ----- */
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+  margin: 1rem 1.5rem;
+  padding: 1.25rem 1rem;
+  background: #d9d9d9;
+}
+
+h1 {
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase; /* en móvil se ve en mayúsculas */
+}
+
+/* ----- Buscador ----- */
+form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  height: 2.75rem;
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 1rem;
+}
+
+input:focus-visible {
+  outline: 2px solid #1e6535;
+  outline-offset: 2px;
+}
+
+form button {
+  font-size: 2rem;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ----- Lista de empleados (con scroll si hay muchos) ----- */
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 26rem;
+  padding: 1rem;
+  overflow-y: auto;
+  list-style: none;
+  background: #1e5a2b;
+  border: 1px solid #000;
+  border-radius: 1rem;
+}
+
+li {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #d9d9d9;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  transition: background 0.2s, box-shadow 0.2s, border-color 0.2s; /* suaviza el resaltado */
+}
+
+li i {
+  grid-row: span 3;
+  font-size: 3.5rem;
+}
+
+li h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+li p {
+  font-size: 1rem;
+}
+
+/* Tarjeta que coincide con la búsqueda: brillo azul */
+li.resaltado {
+  background: #d6e8ff;
+  border-color: #1e6fff;
+  box-shadow: 0 0 0.75rem 0.15rem #3b8cff;
+}
+
+/* ----- Botón QR ----- */
+.qr {
+  align-self: center;
+  padding: 0.6rem 2.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  background: #2a6535;
+  border-radius: 1rem;
+}
+
+.qr:hover {
+  background: #1e5a2b;
+}

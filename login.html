@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panda Work</title>
+  <link rel="icon" href="assets/icons/oso_1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/login_tablet.css">
+  <link rel="stylesheet" href="assets/css/login-escritorio.css">
+</head>
+<body>
+
+  <header>
+    <h1>¡Bienvenido a <span>panda work</span>!</h1>
+    <img src="assets/image/oso_1.png" alt="Panda">
+  </header>
+
+  <main>
+    <h2>Iniciar Sesión</h2>
+
+    <form action="asistencia.html">
+      <label for="correo">Correo Electrónico :</label>
+      <div class="campo">
+        <i class="fa-solid fa-circle-user"></i>
+        <input type="email" id="correo" placeholder="nombre@gmail.com" required>
+      </div>
+
+      <label for="clave">Contraseña :</label>
+      <div class="campo">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="clave" placeholder="********" required>
+        <i class="fa-solid fa-eye-slash ojo" id="ojo"></i>
+      </div>
+
+      <button type="submit">INGRESAR</button>
+      <a href="#">¿Olvidaste tu clave?</a>
+      <a href="registro.html" class="crear">Crea tu cuenta</a>
+    </form>
+  </main>
+
+  <script>
+    const clave = document.getElementById("clave");
+    const ojo = document.getElementById("ojo");
+    ojo.addEventListener("click", () => {
+      const oculta = clave.type === "password";
+      clave.type = oculta ? "text" : "password";
+      ojo.classList.toggle("fa-eye", oculta);
+      ojo.classList.toggle("fa-eye-slash", !oculta);
+    });
+  </script>
+</body>
+</html>
+
+

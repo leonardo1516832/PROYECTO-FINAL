@@ -1,0 +1,154 @@
+/* ===== LOGIN - Mobile first ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #00a65a;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 28rem;
+  margin: 0 auto;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #1a1a1a;
+}
+
+/* ----- Cabecera (franja verde oscura con el panda) ----- */
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 0;
+  background: #1e6535;
+  border-radius: 0 0 2.5rem 2.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h1 span {
+  display: block;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: #d4b93c;
+}
+
+header img {
+  width: 7rem;
+  margin-bottom: -1.5rem; /* el panda sobresale hacia el panel */
+}
+
+/* ----- Panel con degradado verde claro a gris ----- */
+main {
+  flex: 1;
+  margin: 0 1.5rem 1.5rem;
+  padding: 3rem 1.25rem 1.5rem;
+  background: linear-gradient(rgb(179, 214, 192), rgb(232, 236, 236));
+}
+
+h2 {
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* ----- Formulario ----- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  padding-left: 0.5rem;
+  font-size: 1.15rem;
+  color: #d4b93c;
+}
+
+/* Fila: icono + campo */
+.campo {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.campo > i {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 3rem 0 1rem; /* espacio a la derecha para el ojo */
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 2rem;
+}
+
+input:focus-visible {
+  outline: 2px solid #1e6535;
+  outline-offset: 2px;
+}
+
+/* Ojo para mostrar/ocultar la contraseña */
+.campo > .ojo {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* ----- Botón y enlaces ----- */
+button {
+  align-self: center;
+  width: 70%;
+  height: 2.75rem;
+  margin-top: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #fff;
+  background: #1e6535;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #17512a;
+}
+
+a {
+  align-self: center;
+  margin-top: 0.25rem;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.crear {
+  margin-top: 0;
+  color: #d4b93c;
+}

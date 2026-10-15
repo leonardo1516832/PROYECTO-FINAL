@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panda Work</title>
+  <link rel="icon" href="assets/icons/oso_1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/registro.css">
+  <link rel="stylesheet" href="assets/css/registro-tablet.css">
+  <link rel="stylesheet" href="assets/css/registro-escritorio.css">
+</head>
+<body>
+
+  <header>
+    <a href="login.html">
+      <img src="assets/image/oso_4.png" alt="Panda Work">
+      <span>panda work</span>
+    </a>
+    <button type="button" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <main>
+    <h1>Crea tu cuenta</h1>
+    <form action="asistencia.html">
+      <input type="text" placeholder="Nombre completo..." autocomplete="name" required>
+      <input type="email" placeholder="Correo electrónico..." autocomplete="email" required>
+      <input type="text" placeholder="Fecha de nacimiento..." autocomplete="bday" required
+             onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+      <input type="password" placeholder="contraseña...." autocomplete="new-password" required>
+      <button type="submit">REGISTRARME</button>
+    </form>
+  </main>
+
+  <!-- Reemplaza el src por tu imagen -->
+  <img class="panda" src="assets/image/oso_1.png" alt="">
+
+</body>
+</html>

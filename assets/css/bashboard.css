@@ -1,0 +1,138 @@
+/* ===== ASISTENCIA - Mobile first ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #28673a;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 28rem;
+  margin: 0 auto;
+  background: #28673a;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ----- Cabecera ----- */
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  height: 4.5rem;
+  background: #d9d9d9;
+}
+
+header img {
+  align-self: flex-end;
+  width: 4.5rem;
+  margin-bottom: -0.5rem; /* el panda sobresale del borde */
+}
+
+/* ----- Contenido ----- */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+}
+
+/* Imagen del usuario sobre fondo negro */
+.perfil {
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 0.75rem;
+  background: #000;
+}
+
+h1 {
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: #d4b93c;
+  text-align: center;
+}
+
+/* ----- Cámara con marco ----- */
+.camara {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #000;
+  border: 0.3rem solid #fff;
+  border-radius: 1.5rem;
+}
+
+.camara video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* efecto espejo */
+}
+
+/* Esquinas azules del visor (dibujadas con degradados) */
+.camara::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  pointer-events: none;
+  --c: #1e4f9c; /* color */
+  --g: 1.75rem; /* largo de cada esquina */
+  --e: 0.25rem; /* grosor */
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--g) var(--e),
+    linear-gradient(var(--c), var(--c)) top left / var(--e) var(--g),
+    linear-gradient(var(--c), var(--c)) top right / var(--g) var(--e),
+    linear-gradient(var(--c), var(--c)) top right / var(--e) var(--g),
+    linear-gradient(var(--c), var(--c)) bottom left / var(--g) var(--e),
+    linear-gradient(var(--c), var(--c)) bottom left / var(--e) var(--g),
+    linear-gradient(var(--c), var(--c)) bottom right / var(--g) var(--e),
+    linear-gradient(var(--c), var(--c)) bottom right / var(--e) var(--g);
+  background-repeat: no-repeat;
+}
+
+/* ----- Barra de código ----- */
+.codigo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  height: 3.25rem;
+  padding: 0 1rem;
+  background: #fff;
+  border-radius: 1rem;
+}
+
+.codigo i {
+  font-size: 2rem;
+}
+
+.codigo input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  background: none;
+  border: none;
+}
+
+.codigo input:focus-visible {
+  outline: none;
+}
+
+.codigo:focus-within {
+  outline: 2px solid #d4b93c;
+  outline-offset: 2px;
+}

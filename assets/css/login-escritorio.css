@@ -1,0 +1,112 @@
+/* ===== LOGIN - ESCRITORIO (desktop) =====
+   Todo va dentro de un media query: estas reglas SOLO se aplican
+   cuando la pantalla mide 1024px o más. En celular no hacen nada. */
+@media (min-width: 1024px) {
+
+  /* ----- Fondo de toda la página ----- */
+  html {
+    background: #07562a; /* verde oscuro del diseño */
+  }
+
+  /* ----- Body: pasa de 1 columna (móvil) a 2 columnas (escritorio) -----
+     Sus dos hijos directos son <header> (izquierda) y <main> (derecha). */
+  body {
+    display: grid;                      /* cambiamos flex por grid */
+    grid-template-columns: 1.2fr 1fr;   /* izquierda un poco más ancha */
+    align-items: center;                /* centra ambas columnas en vertical */
+    gap: 3rem;                          /* espacio entre las dos columnas */
+    max-width: none;                    /* quitamos el límite de 28rem del móvil */
+    padding: 2rem 3rem;
+  }
+
+  /* ----- Columna izquierda: cabecera -----
+     En móvil era una franja verde con esquinas redondas.
+     En escritorio es solo texto + ilustración sobre el fondo. */
+  header {
+    background: none;       /* sin franja de color */
+    border-radius: 0;
+    padding: 0;
+    align-items: center;
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 3rem;        /* título más grande */
+    margin-bottom: 2.5rem;
+  }
+
+  h1 span {
+    font-size: 2.5rem;
+  }
+
+  /* Panda pequeño que "se asoma" sobre la ilustración.
+     order: 1 -> va antes que la ilustración (::after, order: 2).
+     El margen negativo lo hace montarse sobre el borde de la tarjeta. */
+  header img {
+    order: 1;
+    position: relative;
+    z-index: 2;             /* queda por encima de la ilustración */
+    width: 6rem;
+    margin-bottom: -2.8rem;
+  }
+
+  /* Ilustración grande, creada con ::after (no necesita etiqueta HTML).
+     Cambia "ilustracion.png" por el nombre de tu imagen. */
+  header::after {
+    content: "";
+    order: 2;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 16 / 9;   /* mantiene la proporción de la tarjeta */
+    background: #d9e8b8 url("../image/panda.png") center / cover no-repeat;
+    border-radius: 1rem;
+  }
+
+  /* ----- Columna derecha: panel del formulario ----- */
+  main {
+    position: relative;     /* necesario para ubicar el panda de la esquina */
+    flex: none;             /* anulamos el flex: 1 del móvil */
+    width: 100%;
+    max-width: 30rem;       /* el panel no se estira demasiado */
+    margin: 0 auto;         /* lo centra en su columna */
+    padding: 4rem 3rem 3rem;
+    border-radius: 1rem;
+    /* Fondo gris con bambú. Cambia "bambu.png" por tu imagen.
+       Si se ve muy tapado, baja el 0.6 (más bambú) o súbelo (menos bambú). */
+    background:
+      linear-gradient(rgba(217, 217, 217, 0.6), rgba(217, 217, 217, 0.6));
+    background-color: #d9d9d9;
+  }
+
+  /* Panda de la esquina inferior derecha (sobresale del panel) */
+  main::after {
+    content: "";
+    position: absolute;
+    right: -1.5rem;         /* valores negativos = sale hacia afuera */
+    bottom: -1.5rem;
+    width: 6rem;
+    height: 6rem;
+    background: url("../image/oso_4.png") center / contain no-repeat;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ----- Formulario: más ancho y centrado dentro del panel ----- */
+  form {
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+
+  /* Efecto al pasar el mouse (en celular no existe el "hover") */
+  input:hover {
+    border-color: #1e6535;
+  }
+
+  button {
+    width: 60%;             /* el botón más angosto que en móvil */
+  }
+}

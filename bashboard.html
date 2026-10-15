@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bashboard | Panda Work</title>
+  <link rel="icon" href="assets/icons/oso_1.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/bashboard.css">
+  <link rel="stylesheet" href="assets/css/bashboard-tablet.css">
+  <link rel="stylesheet" href="assets/css/bashboard-escritorio.css">
+</head>
+<body>
+
+  <header>
+    <img src="assets/image/oso_1.png" alt="Panda Work">
+  </header>
+                     
+  <main>
+    <!-- Reemplaza el src por tu imagen -->
+    <img class="perfil" src="assets/image/cara-panda.png" alt="Foto del usuario">
+    <h1>Usuario panda</h1>
+
+    <div class="camara">
+      <video id="video" autoplay playsinline muted></video>
+    </div>
+
+    <label class="codigo">
+      <i class="fa-solid fa-barcode"></i>
+      <input type="text" placeholder="Código de asistencia" aria-label="Código de asistencia">
+    </label>
+  </main>
+
+  <script>
+    // Enciende la cámara (requiere https o localhost)
+    navigator.mediaDevices?.getUserMedia({ video: { facingMode: "user" } })
+      .then(stream => document.getElementById("video").srcObject = stream)
+      .catch(() => console.log("No se pudo acceder a la cámara"));
+  </script>
+</body>
+</html>

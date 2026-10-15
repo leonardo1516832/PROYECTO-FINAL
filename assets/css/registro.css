@@ -1,0 +1,137 @@
+/* ===== REGISTRO - Mobile first ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #1fa55c;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 28rem;
+  margin: 0 auto;
+  background: #1fa55c;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #1a1a1a;
+}
+
+/* Colina verde oscura del fondo */
+body::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: #1e4d2b;
+  border-radius: 50% 50% 0 0 / 5rem 5rem 0 0;
+}
+
+/* ----- Cabecera (franja verde oscura de arriba) ----- */
+header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #1e5a30;
+}
+
+header a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+header img {
+  width: 3rem;
+}
+
+header span {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  color: #d4b93c;
+}
+
+header button {
+  font-size: 2rem;
+  color: #000;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ----- Panel con degradado verde claro a gris ----- */
+main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  margin: 0.5rem 1.5rem 1.5rem;
+  padding: 1.5rem 1.25rem 2rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(rgb(142, 194, 159), rgb(232, 236, 236));
+}
+
+h1 {
+  margin: 0 0 1.5rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* ----- Formulario ----- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+input {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 2rem;
+}
+
+input:focus-visible {
+  outline: 2px solid #1e6535;
+  outline-offset: 2px;
+}
+
+button[type="submit"] {
+  align-self: center;
+  width: 70%;
+  height: 2.75rem;
+  margin-top: 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #fff;
+  background: #1e6535;
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #17512a;
+}
+
+/* ----- Panda de la esquina ----- */
+.panda {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 5.5rem;
+}

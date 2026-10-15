@@ -1,0 +1,124 @@
+/* ===== REGISTRO - TABLET =====
+   Estas reglas SOLO se aplican cuando la pantalla mide entre 768px y 1023px.
+   - Menos de 768px: se ve el CSS móvil (registro.css).
+   - Desde 1024px: se ve el CSS de escritorio (registro-escritorio.css).
+   El "max-width: 1023px" evita que la tablet se mezcle con el escritorio. */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* ----- Fondo general: gris claro ----- */
+  html {
+    background: #d9d9d9;
+  }
+
+  /* ----- Body: pasa de 1 columna (móvil) a una cuadrícula (grid) -----
+     Filas:    1) cabecera   2) contenido
+     Columnas: izquierda (panda) | centro (formulario) | derecha (panda)
+     El centro mide máximo 26rem y los lados se reparten el resto. */
+  body {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 26rem) 1fr;
+    grid-template-rows: auto 1fr;
+    max-width: none;                    /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+    background: #d9d9d9;
+  }
+
+  /* ----- Cabecera: franja verde oscura con el panda y la hamburguesa ----- */
+  header {
+    grid-column: 1 / -1;                /* ocupa las tres columnas */
+    grid-row: 1;
+    padding: 0.5rem 2rem;
+  }
+
+  header img {
+    width: 3.5rem;                      /* panda pequeño de la esquina */
+  }
+
+  /* En este diseño de tablet no se ve el texto "panda work" */
+  header span {
+    display: none;
+  }
+
+  header button {
+    font-size: 2.5rem;                  /* hamburguesa más grande */
+  }
+
+  /* ----- Panda de la izquierda (oso_2.png) -----
+     En móvil, body::before era la colina verde. Aquí lo convertimos
+     en una caja normal (position: static) que muestra el panda.
+     Capa de arriba = el panda ("contain" = entra completo sin cortarse,
+                      "center bottom" = pegado abajo, sobre la sombra).
+     Capa de abajo  = la sombra (elipse verde).
+     padding-bottom = espacio reservado para la sombra (la mitad de su alto). */
+  body::before {
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    box-sizing: border-box;             /* el padding cuenta dentro del width y height */
+    width: 14rem;
+    height: 18rem;
+    padding-bottom: 1.25rem;
+    border-radius: 0;
+    background:
+      url("../image/oso_2.png") center bottom / contain no-repeat,
+      radial-gradient(ellipse, #2b6a2f 70%, transparent 71%) center bottom / 90% 2.5rem no-repeat;
+    background-origin: content-box, border-box;
+  }
+
+  /* ----- Panda de la derecha (oso_3.png): mismas medidas que el de la izquierda ----- */
+  body::after {
+    content: "";
+    grid-column: 3;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    box-sizing: border-box;
+    width: 14rem;
+    height: 18rem;
+    padding-bottom: 1.25rem;
+    background:
+      url("../image/oso_3.png") center bottom / contain no-repeat,
+      radial-gradient(ellipse, #2b6a2f 70%, transparent 71%) center bottom / 90% 2.5rem no-repeat;
+    background-origin: content-box, border-box;
+  }
+
+  /* ----- Panel del centro: el formulario ----- */
+  main {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;                 /* centrado en vertical */
+    margin: 1.5rem 0;                   /* quitamos los márgenes laterales del móvil */
+    padding: 1.5rem 3rem 2.5rem;
+    border-radius: 1rem;
+    background: #b0bfb2;                /* verde grisáceo plano, como en el diseño */
+  }
+
+  h1 {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;                 /* título centrado */
+  }
+
+  form {
+    gap: 1rem;                          /* menos espacio entre campos */
+  }
+
+  input {
+    height: 3rem;
+    padding: 0 1.25rem;
+    font-size: 1rem;
+    background: #e6ece6;                /* en móvil eran transparentes */
+  }
+
+  button[type="submit"] {
+    height: 3rem;
+    font-size: 1.1rem;
+  }
+
+  /* En este diseño no se ve el panda de la esquina del panel */
+  .panda {
+    display: none;
+  }
+}

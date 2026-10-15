@@ -1,0 +1,143 @@
+/* ===== REGISTRO - ESCRITORIO (desktop) =====
+   Todo va dentro de un media query: estas reglas SOLO se aplican
+   cuando la pantalla mide 1024px o más. En celular no hacen nada.
+   Este archivo se carga DESPUÉS de registro.css, por eso lo que
+   escribimos aquí sobrescribe al CSS móvil. */
+@media (min-width: 1024px) {
+
+  /* ----- Fondo general: verde oscuro ----- */
+  html,
+  body {
+    background: #07562a;
+  }
+
+  /* ----- Body: pasa de 1 columna (móvil) a una cuadrícula (grid) -----
+     Filas:    1) cabecera   2) contenido   3) franja gris inferior
+     Columnas: izquierda (panda grande) y derecha (formulario) */
+  body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;      /* dos columnas iguales */
+    grid-template-rows: auto 1fr auto;   /* cabecera y franja se ajustan, el centro se estira */
+    max-width: none;                     /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+  }
+
+  /* ----- Cabecera: franja gris con "panda work" al centro y salir a la derecha ----- */
+  header {
+    grid-column: 1 / -1;                 /* ocupa las dos columnas */
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* izquierda (vacía) | centro | derecha */
+    align-items: center;
+    height: 5rem;
+    padding: 0 2rem;
+    background: #d9d9d9;                 /* en móvil era verde, aquí gris */
+  }
+
+  /* El <a> envuelve la imagen y el texto. "display: contents" hace que
+     desaparezca como caja, y así el texto se ubica directo en la cabecera. */
+  header a {
+    display: contents;
+  }
+
+  /* En este diseño de escritorio la cabecera NO lleva el panda pequeño */
+  header img {
+    display: none;
+  }
+
+  header span {
+    grid-column: 2;                      /* columna del centro */
+    font-size: 2.75rem;
+    color: #7a6a10;                      /* dorado oscuro del diseño */
+  }
+
+  header button {
+    grid-column: 3;                      /* columna de la derecha */
+    justify-self: end;
+    color: #000;
+  }
+ 
+  /* ----- Columna izquierda: panda grande -----
+     En móvil, body::before era la colina verde. Aquí lo convertimos
+     en una caja normal (position: static) que muestra la imagen.
+     Cambia "panda_grande.png" por el nombre de tu imagen
+     (si tu imagen ya trae la sombra gris de abajo, no hace falta más). */
+ body::before {
+  position: static;                 /* deja de "flotar" en el fondo */
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;               /* centrado en vertical */
+  justify-self: center;             /* centrado en horizontal */
+  width: 80%;                       /* tamaño del panda: baja este valor para hacerlo más pequeño */
+  height: 25rem;                    /* alto de la caja (antes era min-height: 26rem) */
+  border-radius: 0;
+  background:
+    /* capa de arriba: el panda */
+    url("../image/oso_3.png") center top / auto 100% no-repeat,
+    /* capa de abajo: la sombra, una elipse clara bajo los pies */
+    radial-gradient(ellipse, #e6e6e6 70%, transparent 71%) center bottom / 75% 3rem no-repeat;
+}
+
+  /* ----- Columna derecha: panel del formulario ----- */
+  main {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;                  /* centrado en vertical */
+    justify-self: center;                /* centrado en horizontal */
+    flex: none;                          /* anula el flex: 1 del móvil */
+    width: 100%;
+    max-width: 38rem;                    /* el panel no se estira demasiado */
+    margin: 2rem 0;
+    padding: 2.5rem 4rem 3.5rem;
+    background: #b0bfb2;                 /* verde grisáceo plano, como en el diseño */
+  }
+
+  h1 {
+    margin: 0 0 2rem;
+    font-size: 2rem;
+    text-align: center;                  /* título centrado */
+  }
+
+  /* Formulario más angosto y centrado dentro del panel */
+  form {
+    max-width: 24rem;
+    margin: 0 auto;
+    gap: 1.5rem;                           /* menos espacio entre campos */
+  }
+
+  /* Los campos llevan un fondo claro (en móvil eran transparentes) */
+  input {
+    background: #e6ece6;
+  }
+
+  input:hover {
+    border-color: #1e6535;               /* efecto al pasar el mouse */
+  }
+
+  /* ----- Panda de la esquina -----
+     En móvil es la <img class="panda"> del HTML. Aquí la ocultamos y
+     dibujamos el panda con main::after para ubicarlo respecto al panel
+     (main ya tiene position: relative desde el CSS móvil). */
+  .panda {
+    display: none;
+  }
+
+  main::after {
+    content: "";
+    position: absolute;
+    right: 0.75rem;                         /* dentro del panel, abajo a la derecha */
+    bottom: 1rem;
+    width: 6rem;
+    height: 6rem;
+    background: url("../image/oso_1.png") center / contain no-repeat;
+  }
+
+  /* ----- Franja gris inferior ----- */
+  body::after {
+    content: "";
+    grid-column: 1 / -1;                 /* ocupa todo el ancho */
+    grid-row: 3;
+    height: 2rem;
+    background: #d9d9d9;
+  }
+}

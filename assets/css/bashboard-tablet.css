@@ -1,0 +1,100 @@
+/* ===== ASISTENCIA - TABLET =====
+   Estas reglas SOLO se aplican cuando la pantalla mide entre 768px y 1023px.
+   - Menos de 768px: se ve el CSS móvil (asistencia.css).
+   - Desde 1024px: se ve el CSS de escritorio (asistencia-escritorio.css).
+   El "max-width: 1023px" evita que la tablet se mezcle con el escritorio. */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* ----- Fondo dividido en dos mitades -----
+     Izquierda: verde oscuro | Derecha: verde grisáceo.
+     Se hace con un degradado duro (corte exacto en 50%), así no
+     necesitamos etiquetas extra en el HTML. */
+  body {
+    max-width: none;                     /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+    background: linear-gradient(to right, #28673a 50%, #b0bfb2 50%);
+  }
+
+  /* En el diseño de tablet no se ve la franja gris con el panda */
+  header {
+    display: none;
+  }
+
+  /* ----- Contenido: pasa de 1 columna a una cuadrícula de 2 columnas -----
+     Columna izquierda: foto del usuario + nombre
+     Columna derecha:   cámara + barra de código
+     Filas: 1) foto y cámara (a la misma altura)   2) nombre y barra de código
+     Sin padding lateral ni espacio entre columnas, para que cada
+     columna coincida exactamente con su mitad de color.
+
+     --caja = tamaño de los dos recuadros negros (foto y marco de la cámara).
+     Cámbialo aquí y todo se ajusta solo. */
+  main {
+    --caja: min(22rem, 90%);             /* 22rem como máximo, o 90% de la columna */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;               /* centra todo en vertical */
+    justify-items: center;               /* centra cada pieza dentro de su columna */
+    gap: 1.5rem 0;                       /* 1.5rem entre filas, 0 entre columnas */
+    padding: 2rem 0;
+  }
+
+  /* ----- Columna izquierda ----- */
+  .perfil {
+    grid-column: 1;
+    grid-row: 1;
+    width: var(--caja);
+    max-width: none;                     /* anula el max-width: 20rem del móvil */
+    aspect-ratio: 1 / 1;                 /* recuadro cuadrado, como en el diseño */
+    padding: 1.25rem;
+    border-radius: 1.25rem;              /* esquinas redondeadas */
+  }
+
+  /* "Usuario panda": dorado, cursiva y más grande */
+  h1 {
+    grid-column: 1;
+    grid-row: 2;
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    font-weight: 500;
+    white-space: nowrap;                 /* evita que se parta en dos líneas */
+  }
+
+  /* ----- Columna derecha -----
+     El recuadro negro que rodea la cámara se dibuja con main::before.
+     Está en la misma celda que la cámara (columna 2, fila 1) y, como
+     ::before va primero en el HTML, queda DETRÁS de la cámara. */
+  main::before {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+    width: var(--caja);                  /* mismo tamaño que la foto de la izquierda */
+    aspect-ratio: 1 / 1;
+    background: #000;
+    border-radius: 1.25rem;
+  }
+
+  /* La cámara se coloca en la misma celda, encima del recuadro negro.
+     Es más chica: le restamos 3.5rem (1.75rem de borde negro por lado). */
+  .camara {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+    width: calc(var(--caja) - 3.5rem);
+    max-width: none;                     /* anula el max-width: 20rem del móvil */
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Barra de código: mismo ancho que los recuadros */
+  .codigo {
+    grid-column: 2;
+    grid-row: 2;
+    width: var(--caja);
+    height: 3.5rem;
+    border-radius: 1rem;
+  }
+}

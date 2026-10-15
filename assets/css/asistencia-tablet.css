@@ -1,0 +1,156 @@
+/* ===== DASHBOARD - TABLET =====
+   Estas reglas SOLO se aplican cuando la pantalla mide entre 768px y 1023px.
+   - Menos de 768px: se ve el CSS móvil (bashboard.css).
+   - Desde 1024px: se ve el CSS de escritorio (bashboard-escritorio.css).
+   El "max-width: 1023px" evita que la tablet se mezcle con el escritorio. */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* ----- Fondo general: verde oscuro ----- */
+  html,
+  body {
+    background: #1e5a2b;
+  }
+
+  body {
+    max-width: none;                    /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+  }
+
+  /* Las dos "colinas" verdes del móvil no existen en tablet */
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  /* ----- Cabecera: franja gris solo con el icono de salir a la derecha ----- */
+  header {
+    justify-content: flex-end;          /* empuja el icono a la derecha */
+    padding: 0.5rem 1.5rem;
+  }
+
+  /* En este diseño no se ven la flecha de volver ni el texto "panda work" */
+  header a:first-child,
+  header span {
+    display: none;
+  }
+
+  /* ----- Contenido: pasa de 1 columna a una cuadrícula de 2 columnas -----
+     Columna izquierda: título + panda grande
+     Columna derecha:   buscador, panel con la lista y botón QR
+     Filas: 1) buscador   2) título/panda/lista   3) botón QR */
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 2rem;
+    row-gap: 1.25rem;
+    margin: 0;
+    padding: 1.25rem 2rem 1.5rem;
+    background: none;                   /* en móvil era un panel gris; aquí no */
+  }
+
+  /* ----- Título: dorado, cursiva, columna izquierda ----- */
+  h1 {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    justify-self: center;
+    margin-top: 1rem;
+    padding-left: 0;
+    font-family: "Dancing Script", cursive;
+    font-size: 2.25rem;
+    font-weight: 500;
+    text-transform: none;               /* anula las mayúsculas del móvil */
+    white-space: nowrap;                /* evita que el título se parta en dos líneas */
+    color: #d4b93c;
+  }
+
+  /* ----- Panda grande de la izquierda con su sombra (oso_3.png) -----
+     Se dibuja con main::before (no necesita etiqueta HTML).
+     "contain" hace que el panda entre completo sin cortarse y
+     "center bottom" lo pega abajo, justo sobre la sombra.
+     El padding-bottom reserva el espacio de la sombra (la mitad de su alto). */
+  main::before {
+    content: "";
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    justify-self: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 17rem;
+    height: 19rem;
+    padding-bottom: 1.5rem;
+    background:
+      url("../image/oso_3.png") center bottom / contain no-repeat,
+      radial-gradient(ellipse, #d9d9d9 70%, transparent 71%) center bottom / 100% 3rem no-repeat;
+    background-origin: content-box, border-box;
+  }
+
+  /* ----- Buscador: arriba a la derecha ----- */
+  form {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  input {
+    height: 3rem;
+    font-size: 1rem;
+    background: #d9d9d9;
+    border: none;                       /* en el diseño no lleva borde */
+    border-radius: 2rem;
+  }
+
+  form button {
+    font-size: 2.25rem;
+    color: #fff;                        /* lupa blanca sobre el fondo verde */
+  }
+
+  /* ----- Lista de empleados dentro del panel gris -----
+     El marco gris alrededor de la lista verde se hace con box-shadow
+     (la "sombra" gris de 1.25rem actúa como el marco del panel).
+     El margin deja espacio para que ese marco no se salga. */
+  ul {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    gap: 0.75rem;
+    max-height: 23rem;                  /* alto para ver 4 tarjetas; si hay más, hace scroll */
+    margin: 1.25rem;
+    box-shadow: 0 0 0 1.25rem #d9d9d9;
+    border-radius: 1rem;
+  }
+
+  /* ----- Tarjetas: más bajas y con letra mediana ----- */
+  li {
+    grid-template-columns: 3rem 1fr;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+  }
+
+  li i {
+    font-size: 2.5rem;                  /* icono de perfil */
+  }
+
+  li h2,
+  li p {
+    font-size: 0.95rem;
+  }
+
+  /* ----- Botón QR: gris con texto negro, debajo del panel ----- */
+  .qr {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: center;
+    padding: 0.5rem 4rem;
+    font-size: 1.5rem;
+    color: #000;
+    background: #d9d9d9;
+    border: 1px solid #000;
+    border-radius: 0.6rem;
+  }
+
+  .qr:hover {
+    background: #c4c4c4;
+  }
+}

@@ -1,0 +1,86 @@
+/* ===== ASISTENCIA - ESCRITORIO (desktop) =====
+   Todo va dentro de un media query: estas reglas SOLO se aplican
+   cuando la pantalla mide 1024px o más. En celular no hacen nada.
+   Este archivo se carga DESPUÉS de asistencia.css, por eso lo que
+   escribimos aquí sobrescribe al CSS móvil. */
+@media (min-width: 1024px) {
+
+  /* ----- Fondo dividido en dos mitades -----
+     Izquierda: verde oscuro | Derecha: verde grisáceo.
+     Se hace con un degradado duro (corte exacto en 50%), así no
+     necesitamos etiquetas extra en el HTML. */
+  html {
+    background: #07562a;
+  }
+
+  body {
+    max-width: none;                     /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+    background: linear-gradient(to right, #07562a 50%, #b0bfb2 50%);
+  }
+
+  /* En el diseño de escritorio no se ve la franja gris con el panda */
+  header {
+    display: none;
+  }
+
+  /* ----- Contenido: pasa de 1 columna a una cuadrícula de 2 columnas -----
+     Columna izquierda: foto del usuario + nombre
+     Columna derecha:   cámara + barra de código
+     Filas: 1) foto y cámara (a la misma altura)   2) nombre y barra de código
+     Sin padding lateral ni espacio entre columnas, para que cada
+     columna coincida exactamente con su mitad de color. */
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-content: center;               /* centra todo en vertical */
+    justify-items: center;               /* centra cada pieza dentro de su columna */
+    gap: 1.5rem 0;                       /* 1.5rem entre filas, 0 entre columnas */
+    padding: 2rem 0;
+  }
+
+  /* ----- Columna izquierda ----- */
+  .perfil {
+    grid-column: 1;
+    grid-row: 1;
+    width: 90%;
+    max-width: 26rem;                    /* tamaño del recuadro negro: cámbialo a tu gusto */
+    border-radius: 0.5rem;               /* esquinas apenas redondeadas, como en el diseño */
+  }
+
+  /* "Usuario panda": dorado, cursiva y más grande */
+  h1 {
+    grid-column: 1;
+    grid-row: 2;
+    font-family: "Dancing Script", cursive;
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  /* ----- Columna derecha ----- */
+  .camara {
+    grid-column: 2;
+    grid-row: 1;
+    width: 90%;
+    max-width: 26rem;                    /* mismo ancho que la foto, para que queden alineadas */
+  }
+
+  .codigo {
+    grid-column: 2;
+    grid-row: 2;
+    width: 90%;
+    max-width: 26rem;
+    height: 3.5rem;
+    border-radius: 0.6rem;
+  }
+
+    .codigo::before {
+    content: "input-dni-codebar";
+    position: absolute;
+    top: -1.5rem;
+    left: 0;
+    font-size: 0.75rem;
+    color: #fff;
+  }
+}

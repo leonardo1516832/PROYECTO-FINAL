@@ -1,0 +1,176 @@
+/* ===== DASHBOARD - ESCRITORIO (desktop) =====
+   Todo va dentro de un media query: estas reglas SOLO se aplican
+   cuando la pantalla mide 1024px o más. En celular no hacen nada.
+   Este archivo se carga DESPUÉS de bashboard.css, por eso lo que
+   escribimos aquí sobrescribe al CSS móvil. */
+@media (min-width: 1024px) {
+
+  /* ----- Fondo general: verde oscuro ----- */
+  html,
+  body {
+    background: #07562a;
+  }
+
+  body {
+    max-width: none;                    /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+  }
+
+  /* Las dos "colinas" verdes del móvil no existen en escritorio */
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  /* ----- Cabecera: flecha y "panda work" a la izquierda ----- */
+  header {
+    height: 5.5rem;                     /* más alta que en móvil */
+    padding: 0 2rem;
+    gap: 1rem;
+    font-size: 2.25rem;                 /* tamaño de la flecha */
+  }
+
+  header span {
+    margin-right: 0;
+    font-size: 3rem;
+    color: #7a6a10;                     /* dorado oscuro del diseño */
+  }
+
+  /* El icono de cerrar sesión (el último enlace) no aparece en este diseño */
+  header a:last-child {
+    display: none;
+  }
+
+  /* ----- Contenido: cuadrícula de 2 columnas -----
+     Columna izquierda: buscador + panda grande
+     Columna derecha:   título, panel con la lista y botón QR
+     Filas: 1) título   2) panel   3) botón QR
+     "align-content: start" pega todo arriba, como en el diseño. */
+  main {
+    display: grid;
+    grid-template-columns: 1fr 2.4fr;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    column-gap: 1.5rem;
+    margin: 0;
+    padding: 1rem 5rem 1.5rem 3rem;     /* arriba | derecha | abajo | izquierda */
+    background: none;                   /* en móvil era un panel gris; aquí no */
+  }
+
+  /* ----- Título: dorado, cursiva, sobre el panel, un poco a la izquierda ----- */
+  h1 {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    margin-left: 2.5rem;
+    padding-left: 0;
+    font-family: "Dancing Script", cursive;
+    font-size: 3rem;
+    font-weight: 500;
+    text-transform: none;               /* anula las mayúsculas del móvil */
+    color: #d4b93c;
+  }
+
+  /* ----- Buscador: columna izquierda, a la altura de la lista ----- */
+  form {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    margin-top: 1.5rem;
+  }
+
+  input {
+    background: #d9d9d9;
+    border: none;                       /* en el diseño no lleva borde */
+    border-radius: 2rem;
+  }
+
+  form button {
+    font-size: 1.5rem;
+    color: #fff;                        /* lupa blanca sobre el fondo verde */
+  }
+
+  /* ----- Panda grande de la izquierda con su sombra -----
+     Está en la misma fila que el panel (grid-row: 2) y pegado abajo
+     (align-self: end), así su sombra queda a la altura del borde inferior.
+     Capa de arriba = el panda; capa de abajo = la sombra (elipse clara). */
+ main::before {
+  content: "";
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  justify-self: center;
+  width: 18rem;                 /* ← ancho de toda la caja (panda + sombra) */
+  height: 18rem;                /* ← alto de toda la caja */
+  margin-bottom: 0.5rem;
+  background:
+    url("../image/oso_2.png") center top / auto 95% no-repeat,
+    radial-gradient(ellipse, #e6e6e6 70%, transparent 71%) center bottom / 90% 2.5rem no-repeat;
+}
+
+  /* ----- Panda que se asoma arriba a la derecha -----
+     Truco: como está en la celda del panel (grid-column 2 / grid-row 2),
+     "top" y "right" se miden desde esa celda. translateY(-95%) lo sube
+     para que se apoye sobre el borde del panel y sobresalga hacia la cabecera.
+     Cambia "oso_2.png" por la imagen que quieras. */
+  main::after {
+  content: "";
+  position: absolute;
+  grid-column: 2;
+  grid-row: 2;
+  top: 0.25rem;
+  right: 5rem;                  /* ← antes 0.75rem: ahora queda sobre el panel, no afuera */
+  width: 9rem;
+  height: 10rem;
+  transform: translateY(-95%);
+  background: url("../image/oso_4.png") center bottom / contain no-repeat;
+}
+
+  /* ----- Lista de empleados dentro del panel gris -----
+     El marco gris alrededor de la lista verde se hace con box-shadow
+     (el "sombreado" gris de 1.25rem actúa como el marco).
+     El margin deja espacio para que ese marco no se salga. */
+  ul {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    max-height: 22rem;                  /* alto para ver 4 tarjetas; si hay más, hace scroll */
+    margin: 1.5rem 1.25rem 1.25rem;
+    box-shadow: 0 0 0 1.25rem #d9d9d9;
+  }
+
+  /* ----- Tarjetas: bajas y con letra pequeña ----- */
+  li {
+    grid-template-columns: 3rem 1fr;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+  }
+
+  li i {
+    font-size: 2.25rem;                 /* icono de perfil más pequeño */
+  }
+
+  li h2,
+  li p {
+    font-size: 0.85rem;
+  }
+
+  /* ----- Botón QR: gris con texto negro, justo debajo del panel ----- */
+  .qr {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: center;
+    margin-top: 1rem;
+    padding: 0.5rem 4rem;
+    font-size: 1.5rem;
+    color: #000;
+    background: #d9d9d9;
+    border-radius: 0.6rem;
+  }
+
+  .qr:hover {
+    background: #c4c4c4;
+  }
+}

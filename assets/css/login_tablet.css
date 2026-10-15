@@ -1,0 +1,121 @@
+/* ===== LOGIN - TABLET =====
+   Estas reglas SOLO se aplican cuando la pantalla mide entre 768px y 1023px.
+   - Menos de 768px: se ve el CSS móvil (login.css).
+   - Desde 1024px: se ve el CSS de escritorio (login-escritorio.css).
+   El "max-width: 1023px" evita que la tablet se mezcle con el escritorio. */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* ----- Body: pasa de 1 columna (móvil) a 2 columnas -----
+     Izquierda: <header> (verde oscuro)  |  Derecha: <main> (panel gris) */
+  body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;     /* dos mitades iguales */
+    max-width: none;                    /* quitamos el límite de 28rem del móvil */
+    margin: 0;
+  }
+
+  /* ----- Columna izquierda: bienvenida + ilustración -----
+     En móvil era una franja con esquinas redondeadas.
+     En tablet es una columna completa de color verde oscuro. */
+  header {
+    justify-content: center;            /* centra el contenido en vertical */
+    padding: 2rem 1.5rem;
+    background: #07562a;
+    border-radius: 0;                   /* sin esquinas redondeadas */
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+    font-size: 2.75rem;                 /* título más grande */
+  }
+
+  h1 span {
+    font-size: 2.25rem;
+  }
+
+  /* Panda pequeño que "se asoma" sobre la ilustración.
+     order: 1 -> va después del título y antes de la ilustración (header::after, order: 2).
+     El margen negativo hace que se monte sobre el borde de la tarjeta. */
+  header img {
+    order: 1;
+    position: relative;
+    z-index: 2;                         /* por encima de la ilustración */
+    width: 8rem;
+    margin-bottom: -3rem;
+  }
+
+  /* Ilustración grande (assets/image/panda.png), creada con ::after:
+     no necesita etiqueta en el HTML. */
+  header::after {
+    content: "";
+    order: 2;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 4 / 3;                /* proporción de la tarjeta */
+    background: #d9e8b8 url("../image/panda.png") center / cover no-repeat;
+    border-radius: 1rem;
+  }
+
+  /* ----- Columna derecha: panel gris con el formulario ----- */
+  main {
+    position: relative;                 /* para ubicar los círculos decorativos */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;            /* centra el formulario en vertical */
+    margin: 0;                          /* quitamos los márgenes del móvil */
+    padding: 2rem 2.5rem;
+    background: #d9d9d9;                /* gris plano (en móvil era degradado) */
+  }
+
+  /* Círculos decorativos de arriba a la derecha.
+     Son 3 degradados circulares (uno por color) dibujados con ::before.
+     Si no los quieres, borra todo este bloque. */
+  main::before {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 5.5rem;
+    height: 4.5rem;
+    background:
+      radial-gradient(circle 1.5rem at 35% 60%, #2f6b3c 99%, transparent 100%),
+      radial-gradient(circle 1.3rem at 75% 30%, #1fa55c 99%, transparent 100%),
+      radial-gradient(circle 1.2rem at 65% 75%, #5fd08f 99%, transparent 100%);
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2.25rem;
+  }
+
+  /* ----- Formulario: más grande y centrado dentro del panel ----- */
+  form {
+    width: 100%;
+    max-width: 26rem;                   /* el formulario no se estira demasiado */
+    margin: 0 auto;
+  }
+
+  label {
+    font-size: 1.5rem;                  /* etiquetas doradas más grandes */
+  }
+
+  .campo > i {
+    font-size: 2rem;                    /* iconos de usuario y candado */
+  }
+
+  input {
+    height: 3.25rem;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 60%;
+    height: 3.25rem;
+    font-size: 1.2rem;
+  }
+
+  a {
+    font-size: 1.15rem;                 /* enlaces más grandes */
+  }
+}
